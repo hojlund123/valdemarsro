@@ -30,11 +30,4 @@ def get_matches():
             file1 = open("myfile.txt", "a")  # append mod
             file1.write(timee['href'] + "\n")
             file1.close()
-            #print("\n")
-            #print(div.find('a').contents[0])
-            #opskriftTitle = "https://hltv.org" + getMatch.find("a", {"class": "match a-reset"}).get("href")
-            #opskriftLink = converters.to_int(getMatch.find("a", {"class": "match a-reset"}).get("href").split("/")[-2])
-        #print(timee['url'] + ".\n")
-        #print(timee)
-        #print("\n")
     return matches_list

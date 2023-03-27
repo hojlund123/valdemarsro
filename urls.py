@@ -40,17 +40,6 @@ def read_articles():
          opskriftFremgang2 = str(opskriftFremgang.encode('utf-8'))
          opskriftTips = soup.find_all("ul")[8].encode('utf-8')
 
-         #print("-----------------------------------------------------------")
-         #print(opskriftTitle)
-         #print("-----------------------------------------------------------")
-         #print("Tid i alt: "+opskriftTid)
-         #print("Arbejdstid: "+opskriftArbejdstid)
-         #print("Antal: "+opskriftAntal)
-         #print(opskriftLink)
-         #print("Ingredienser: "+opskriftIngrediens)
-         #print("Fremgangsmåde: "+opskriftFremgang2)
-         #print("\n")
-
          if article_is_not_db(opskriftTitle, opskriftLink):
             add_article_to_db(opskriftTitle, opskriftLink)
             ### Email notification
@@ -60,14 +49,11 @@ def send_notification(opskriftTitle, opskriftLink, opskriftIngrediens):
     smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
     smtp_server.ehlo()
     smtp_server.starttls()
-    smtp_server.login('spiltipsbot@gmail.com', 'leazjykkdvctbwaw')
+    smtp_server.login('email@gmail.com', 'password')
     msg = MIMEText(f'\n{opskriftTitle}. \n{opskriftIngrediens}. \n{opskriftLink}')
     msg['Subject'] = opskriftTitle
-    msg['From'] = 'spiltipsbot@gmail.com'
-    msg['To'] = 'zere0.mail@gmail.com'
-
-    #fix html opskriftIngrediens
-    #msg.add_header('Content-Type','text/html')
+    msg['From'] = ''
+    msg['To'] = ''
     smtp_server.send_message(msg)
     smtp_server.quit()
     print("email sent - "+msg["Subject"])
